@@ -28,3 +28,5 @@ class Endereco {
     }
 
 }
+
+export default Endereco;
