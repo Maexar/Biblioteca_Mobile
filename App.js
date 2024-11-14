@@ -23,9 +23,7 @@ export default function App() {
               name="SignUp" 
               component={SignUpScreen} 
               options={{ headerShown: false }}
-            
           />
-      
           <Stack.Screen
             name="Onboarding"
             component={OnboardingScreen}
