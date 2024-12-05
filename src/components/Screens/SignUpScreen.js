@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import Endereco from '../../../Modelos/Endereco';
 import Usuario from '../../../Modelos/Usuario';
+import { supabase } from '../../../services/supabase';
+import CryptoJS from 'react-native-crypto-js';
 
 const SignUpScreen = ({ navigation }) => {
   const [nome, setNome] = useState('');
@@ -19,7 +21,21 @@ const SignUpScreen = ({ navigation }) => {
     return emailRegex.test(email);
   };
 
-  const handleSignUp = async () => {
+
+  function criptografarSenha(senha, chaveSecreta) {
+      return CryptoJS.AES.encrypt(senha, chaveSecreta).toString();
+  }
+  
+
+  const chave = 'chave';
+
+  const adicionarUsuario = async() => {
+    const senhaCriptografada = criptografarSenha(senha, chave)
+    const { data, error } = await supabase.from("Usuario").insert([{nome: nome, email: email, senha: senhaCriptografada}])
+    navigation.replace('Onboarding');
+  }
+
+  const criarConta = async () => {
     try {
       if (!nome) {
         Alert.alert('Erro', 'Por favor, insira o nome.');
@@ -33,27 +49,24 @@ const SignUpScreen = ({ navigation }) => {
         Alert.alert('Erro', 'A senha deve ter pelo menos 6 caracteres.');
         return;
       }
-      if (!rua) {
+      if (rua) {
         Alert.alert('Erro', 'Por favor, insira a rua.');
         return;
       }
-      if (!numero) {
+      if (numero) {
         Alert.alert('Erro', 'Por favor, insira o número.');
         return;
       }
-      if (!bairro) {
+      if (bairro) {
         Alert.alert('Erro', 'Por favor, insira o bairro.');
         return;
       }
-      if (!cidade) {
+      if (cidade) {
         Alert.alert('Erro', 'Por favor, insira a cidade.');
         return;
       }
+      adicionarUsuario()
 
-      const endereco = new Endereco(numero, rua, bairro, cidade);
-      const usuario = new Usuario(nome, endereco, cpf, dataNascimento, email, senha);
-
-      navigation.replace('Onboarding');
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
       Alert.alert('Erro', 'Ocorreu um erro ao criar a conta. Por favor, tente novamente.');
@@ -140,7 +153,7 @@ const SignUpScreen = ({ navigation }) => {
             style={styles.input}
           />
 
-          <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+          <TouchableOpacity style={styles.button} onPress={criarConta}>
             <Text style={styles.buttonText}>Criar Conta</Text>
           </TouchableOpacity>
 

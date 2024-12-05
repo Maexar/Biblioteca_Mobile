@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { supabase } from '../../../services/supabase';
+import CryptoJS from 'react-native-crypto-js';
+
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setPassword] = useState('');
 
-  const handleLogin = () => {
+
+  function descriptografarSenha(senhaCriptografada, chave) {
+    const bytes = CryptoJS.AES.decrypt(senhaCriptografada, chave);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
+
+const chave = 'chave';
+
+  async function lidarLogin() {
     if (!email) {
       Alert.alert('Erro', 'Por favor, insira o email.');
       return;
     }
-    if (!password) {
+    if (!senha) {
       Alert.alert('Erro', 'Por favor, insira a senha.');
       return;
     }
-    navigation.replace('Home'); 
+    if(senha && email){
+      const { data, error, status } = await supabase
+        .from('Usuario')
+        .select('email, senha')
+        .eq('email', email)
+        .single()
+        const senhaBanco = descriptografarSenha(data.senha, chave)
+        if(senhaBanco == senha){
+          navigation.replace('Home'); 
+        }
+        else{
+          Alert.alert('Erro', 'Conta não existe');
+        }
+    }
   };
 
-  const handleSignUp = () => {
-    // Implementar a logica de cricao de conta
+  const lidarRegistro = () => {
     navigation.replace('SignUp'); 
   };
 
@@ -36,16 +59,16 @@ const LoginScreen = ({ navigation }) => {
       <TextInput
         style={styles.input}
         placeholder="Senha"
-        value={password}
+        value={senha}
         onChangeText={setPassword}
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={lidarLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleSignUp}>
+      <TouchableOpacity onPress={lidarRegistro}>
         <Text style={styles.signUpText}>Criar uma conta</Text>
       </TouchableOpacity>
     </View>
