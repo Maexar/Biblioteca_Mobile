@@ -28,12 +28,12 @@ const chave = 'chave';
     if(senha && email){
       const { data, error, status } = await supabase
         .from('Usuario')
-        .select('email, senha')
+        .select('*')
         .eq('email', email)
         .single()
         const senhaBanco = descriptografarSenha(data.senha, chave)
         if(senhaBanco == senha){
-          navigation.replace('Home'); 
+          navigation.replace('Home', {userData: data}); 
         }
         else{
           Alert.alert('Erro', 'Conta não existe');

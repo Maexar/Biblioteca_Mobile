@@ -6,6 +6,7 @@ class Usuario {
     #dataNascimento;
     #email;
     #senha;
+    //nivel de acesso?
 
     constructor(nome, endereco, cpf, dataNascimento, email, senha) {
         this.#nome = nome;
