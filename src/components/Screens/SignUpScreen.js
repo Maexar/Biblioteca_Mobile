@@ -30,9 +30,32 @@ const SignUpScreen = ({ navigation }) => {
   const chave = 'chave';
 
   const adicionarUsuario = async() => {
-    const senhaCriptografada = criptografarSenha(senha, chave)
-    const { data, error } = await supabase.from("Usuario").insert([{nome: nome, email: email, senha: senhaCriptografada}])
-    navigation.replace('Onboarding');
+    try {
+      const senhaCriptografada = criptografarSenha(senha, chave);
+      const userData = {
+        nome: nome,
+        email: email,
+        senha: senhaCriptografada
+      };
+      
+      const { data, error } = await supabase.from("Usuario").insert([userData]);
+      if (error) throw error;
+      
+      // buscar os dados do usuario recem criado
+      const { data: novoUsuario, error: erroSelect } = await supabase
+        .from("Usuario")
+        .select("*")
+        .eq("email", email)
+        .single();
+        
+      if (erroSelect) throw erroSelect;
+      
+      // depois navega pro Onboarding passando os dados do usuario
+      navigation.replace('Onboarding', { userData: novoUsuario });
+    } catch (error) {
+      console.error("Erro ao adicionar usuário:", error);
+      Alert.alert("Erro", "Não foi possível criar a conta. Tente novamente.");
+    }
   }
 
   const criarConta = async () => {
@@ -49,19 +72,19 @@ const SignUpScreen = ({ navigation }) => {
         Alert.alert('Erro', 'A senha deve ter pelo menos 6 caracteres.');
         return;
       }
-      if (rua) {
+      if (!rua) {
         Alert.alert('Erro', 'Por favor, insira a rua.');
         return;
       }
-      if (numero) {
+      if (!numero) {
         Alert.alert('Erro', 'Por favor, insira o número.');
         return;
       }
-      if (bairro) {
+      if (!bairro) {
         Alert.alert('Erro', 'Por favor, insira o bairro.');
         return;
       }
-      if (cidade) {
+      if (!cidade) {
         Alert.alert('Erro', 'Por favor, insira a cidade.');
         return;
       }

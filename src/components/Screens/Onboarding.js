@@ -27,7 +27,8 @@ const slides = [
   },
 ];
 
-const OnboardingScreen = ({ navigation }) => {
+const OnboardingScreen = ({ navigation, route }) => {
+  const userData = route.params?.userData;
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef(null);
 
@@ -36,7 +37,7 @@ const OnboardingScreen = ({ navigation }) => {
       flatListRef.current.scrollToIndex({ index: currentIndex + 1 });
       setCurrentIndex(currentIndex + 1);
     } else {
-      navigation.replace('Home');
+      navigation.replace('Home', {userData});
     }
   };
 
