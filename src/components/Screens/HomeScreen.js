@@ -57,6 +57,7 @@ const HomeScreen = ({ navigation, route }) => {
       </View>
 
       <ScrollView>
+
         <View style={styles.containerCategorias}>
           <Text style={styles.tituloSecao}>Categorias</Text>
           <View style={styles.botoesCategoria}>
@@ -72,18 +73,44 @@ const HomeScreen = ({ navigation, route }) => {
           </View>
         </View>
 
-        <View style={styles.containerLivrosRecentes}>
+        <View style={styles.containerListagem}>
           <Text style={styles.tituloSecao}>Adicionados Recentemente</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {/* exemplo de card d livro */}
+
+            {/* inicio cartao livro*/}
             <View style={styles.cartaoLivro}>
               <View style={styles.capaLivro}></View>
               <Text style={styles.tituloLivro}>Nome do Livro</Text>
               <Text style={styles.autorLivro}>Autor</Text>
             </View>
-            
+            {/* fim cartao livro*/}
+
+            {/* inicio cartao livro*/}
+            <View style={styles.cartaoLivro}>
+              <View style={styles.capaLivro}></View>
+              <Text style={styles.tituloLivro}>Nome do Livro</Text>
+              <Text style={styles.autorLivro}>Autor</Text>
+            </View>
+            {/* fim cartao livro*/}
+
           </ScrollView>
         </View>
+
+        <View style={styles.containerListagem}>
+          <Text style={styles.tituloSecao}>Populares</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+
+            {/* inicio cartao livro*/}
+            <View style={styles.cartaoLivro}>
+              <View style={styles.capaLivro}></View>
+              <Text style={styles.tituloLivro}>Nome do Livro</Text>
+              <Text style={styles.autorLivro}>Autor</Text>
+            </View>
+            {/* fim cartao livro*/}
+
+          </ScrollView>
+        </View>
+
       </ScrollView>
     </View>
   );
@@ -92,28 +119,42 @@ const HomeScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F5F7FA',
+   // antiga backgroundColor: '#F5F5F5',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#4A90E2',
+    // antiga backgroundColor: '#fff',
     elevation: 2,
   },
   textoUsuario: {
+    //nova cor:
+    color: '#FFFFFF',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '600', //antigo: 'bold'
   },
   botaoSair: {
     padding: 8,
+    //novo:
+    backgroundColor: '#F39C12',
+    borderRadius: 5,
   },
   textoSair: {
-    color: '#FF0000',
+    color: '#FFFFFF', //antigo: "#FF0000"
+    //novo:
+    fontSize: 14,
   },
   containerPesquisa: {
-    padding: 16,
+    //novo:
+    backgroundColor: '#FFFFFF',
+    margin: 15,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#E8ECEF',
   },
   inputPesquisa: {
     backgroundColor: '#fff',
@@ -121,6 +162,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
+    //novo:
+    color: '#2C3E50',
   },
   containerCategorias: {
     padding: 16,
@@ -145,7 +188,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  containerLivrosRecentes: {
+  containerListagem: {
     padding: 16,
   },
   cartaoLivro: {
