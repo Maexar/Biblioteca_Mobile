@@ -110,8 +110,8 @@ const SignUpScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.formContainer}>
-          <Text style={styles.title}>Criar Conta</Text>
+        <View style={styles.containerFormulario}>
+          <Text style={styles.titulo}>Criar Conta</Text>
 
           <TextInput
             style={styles.input}
@@ -149,7 +149,7 @@ const SignUpScreen = ({ navigation }) => {
             secureTextEntry
           />
 
-          <Text style={styles.subtitle}>Endereço</Text>
+          <Text style={styles.subtitulo}>Endereço</Text>
           <TextInput
             placeholder="Rua"
             value={rua}
@@ -176,12 +176,12 @@ const SignUpScreen = ({ navigation }) => {
             style={styles.input}
           />
 
-          <TouchableOpacity style={styles.button} onPress={criarConta}>
-            <Text style={styles.buttonText}>Criar Conta</Text>
+          <TouchableOpacity style={styles.botao} onPress={criarConta}>
+            <Text style={styles.textoCriarConta}>Criar Conta</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={handleCancel}>
-            <Text style={styles.cancelText}>Cancelar</Text>
+            <Text style={styles.textoCancelar}>Cancelar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -198,18 +198,18 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingVertical: 20,
   },
-  formContainer: {
+  containerFormulario: {
     flex: 1,
     alignItems: 'center',
     paddingHorizontal: 20,
   },
-  title: {
+  titulo: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 40,
     marginTop: 20,
   },
-  subtitle: {
+  subtitulo: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 20,
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#fff',
   },
-  button: {
+  botao: {
     backgroundColor: '#6495ED',
     paddingVertical: 15,
     paddingHorizontal: 80,
@@ -233,11 +233,11 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  buttonText: {
+  textoCriarConta: {
     color: '#fff',
     fontSize: 16,
   },
-  cancelText: {
+  textoCancelar: {
     color: '#6495ED',
     marginTop: 10,
     marginBottom: 20,

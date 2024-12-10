@@ -42,46 +42,46 @@ const HomeScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.accountText}>Bem-vindo, {userName}</Text>
-        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Sair</Text>
+        <Text style={styles.textoUsuario}>Bem-vindo, {userName}</Text>
+        <TouchableOpacity onPress={handleLogout} style={styles.botaoSair}>
+          <Text style={styles.textoSair}>Sair</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.searchContainer}>
+      <View style={styles.containerPesquisa}>
         <TextInput
-          style={styles.searchInput}
+          style={styles.inputPesquisa}
           placeholder="Pesquisar livros..."
           placeholderTextColor="#666"
         />
       </View>
 
       <ScrollView>
-        <View style={styles.categoriesContainer}>
-          <Text style={styles.sectionTitle}>Categorias</Text>
-          <View style={styles.categoryButtons}>
-            <TouchableOpacity style={styles.categoryButton}>
-              <Text style={styles.categoryButtonText}>Literatura</Text>
+        <View style={styles.containerCategorias}>
+          <Text style={styles.tituloSecao}>Categorias</Text>
+          <View style={styles.botoesCategoria}>
+            <TouchableOpacity style={styles.botaoCategoria}>
+              <Text style={styles.textoBotaoCategoria}>Literatura</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.categoryButton}>
-              <Text style={styles.categoryButtonText}>Ficção</Text>
+            <TouchableOpacity style={styles.botaoCategoria}>
+              <Text style={styles.textoBotaoCategoria}>Ficção</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.categoryButton}>
-              <Text style={styles.categoryButtonText}>Não-Ficção</Text>
+            <TouchableOpacity style={styles.botaoCategoria}>
+              <Text style={styles.textoBotaoCategoria}>Não-Ficção</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={styles.recentBooksContainer}>
-          <Text style={styles.sectionTitle}>Adicionados Recentemente</Text>
+        <View style={styles.containerLivrosRecentes}>
+          <Text style={styles.tituloSecao}>Adicionados Recentemente</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {/* Example book cards */}
-            <View style={styles.bookCard}>
-              <View style={styles.bookCover}></View>
-              <Text style={styles.bookTitle}>Nome do Livro</Text>
-              <Text style={styles.bookAuthor}>Autor</Text>
+            {/* exemplo de card d livro */}
+            <View style={styles.cartaoLivro}>
+              <View style={styles.capaLivro}></View>
+              <Text style={styles.tituloLivro}>Nome do Livro</Text>
+              <Text style={styles.autorLivro}>Autor</Text>
             </View>
-            {/* Add more book cards as needed */}
+            
           </ScrollView>
         </View>
       </ScrollView>
@@ -102,68 +102,68 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     elevation: 2,
   },
-  accountText: {
+  textoUsuario: {
     fontSize: 18,
     fontWeight: 'bold',
   },
-  logoutButton: {
+  botaoSair: {
     padding: 8,
   },
-  logoutText: {
+  textoSair: {
     color: '#FF0000',
   },
-  searchContainer: {
+  containerPesquisa: {
     padding: 16,
   },
-  searchInput: {
+  inputPesquisa: {
     backgroundColor: '#fff',
     padding: 12,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
   },
-  categoriesContainer: {
+  containerCategorias: {
     padding: 16,
   },
-  sectionTitle: {
+  tituloSecao: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  categoryButtons: {
+  botoesCategoria: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
   },
-  categoryButton: {
+  botaoCategoria: {
     backgroundColor: '#007AFF',
     padding: 12,
     borderRadius: 8,
     marginRight: 8,
   },
-  categoryButtonText: {
+  textoBotaoCategoria: {
     color: '#fff',
     fontWeight: 'bold',
   },
-  recentBooksContainer: {
+  containerLivrosRecentes: {
     padding: 16,
   },
-  bookCard: {
+  cartaoLivro: {
     width: 120,
     marginRight: 16,
   },
-  bookCover: {
+  capaLivro: {
     width: 120,
     height: 180,
     backgroundColor: '#ddd',
     borderRadius: 8,
     marginBottom: 8,
   },
-  bookTitle: {
+  tituloLivro: {
     fontSize: 14,
     fontWeight: 'bold',
   },
-  bookAuthor: {
+  autorLivro: {
     fontSize: 12,
     color: '#666',
   },

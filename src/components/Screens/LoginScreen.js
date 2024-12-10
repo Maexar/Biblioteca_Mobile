@@ -47,7 +47,7 @@ const chave = 'chave';
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem-vindo à Biblioteca</Text>
+      <Text style={styles.titulo}>Bem-vindo à Biblioteca</Text>
 
       <TextInput
         style={styles.input}
@@ -64,12 +64,12 @@ const chave = 'chave';
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button} onPress={lidarLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <TouchableOpacity style={styles.botao} onPress={lidarLogin}>
+        <Text style={styles.textoBotao}>Login</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={lidarRegistro}>
-        <Text style={styles.signUpText}>Criar uma conta</Text>
+        <Text style={styles.textoCadastro}>Criar uma conta</Text>
       </TouchableOpacity>
     </View>
   );
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     padding: 20,
   },
-  title: {
+  titulo: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 40,
@@ -96,17 +96,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
   },
-  button: {
+  botao: {
     backgroundColor: '#6495ED',
     paddingVertical: 15,
     paddingHorizontal: 80,
     borderRadius: 5,
   },
-  buttonText: {
+  textoBotao: {
     color: '#fff',
     fontSize: 16,
   },
-  signUpText: {
+  textoCadastro: {
     color: '#6495ED',
     marginTop: 20,
   },

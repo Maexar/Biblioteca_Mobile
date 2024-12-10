@@ -76,23 +76,23 @@ const OnboardingScreen = ({ navigation, route }) => {
         }}
       />
 
-      <View style={styles.buttonSkipContainer}>
-        <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-            <Text style={styles.buttonText}>Pular</Text>
+      <View style={styles.containerBotaoPular}>
+        <TouchableOpacity style={styles.botaoPular} onPress={handleSkip}>
+            <Text style={styles.textoBotao}>Pular</Text>
         </TouchableOpacity>
       </View>    
 
-      <View style={styles.buttonBackContainer}>
+      <View style={styles.containerBotaoVoltar}>
         {currentIndex > 0 && (
-          <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-            <Text style={styles.buttonText}>Voltar</Text>
+          <TouchableOpacity style={styles.botaoVoltar} onPress={handleBack}>
+            <Text style={styles.textoBotao}>Voltar</Text>
           </TouchableOpacity>
         )}
       </View>
 
-      <View style={styles.buttonNextContainer}>
-        <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
-          <Text style={styles.buttonText}>{currentIndex === slides.length - 1 ? 'Finalizar' : 'Próximo'}</Text>
+      <View style={styles.containerBotaoProximo}>
+        <TouchableOpacity style={styles.botaoProximo} onPress={handleNext}>
+          <Text style={styles.textoBotao}>{currentIndex === slides.length - 1 ? 'Finalizar' : 'Próximo'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -132,43 +132,43 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
-  buttonSkipContainer: {
+  containerBotaoPular: {
     position: 'absolute',
     top: 50,
     alignItems: 'flex-end',
     width: '90%',
   },
 
-  buttonNextContainer: {
+  containerBotaoProximo: {
     position: 'absolute',
     bottom: 50,
     alignItems: 'flex-end',
     width: '90%',
   },
 
-  buttonBackContainer: {
+  containerBotaoVoltar: {
     position: 'absolute',
     bottom: 50,
     alignItems: 'flex-start',
     width: '90%',
   },
 
-  backButton: {
+  botaoVoltar: {
     backgroundColor: '#666',
     padding: 10,
     borderRadius: 5,
   },
-  skipButton: {
+  botaoPular: {
     backgroundColor: '#FF6347',
     padding: 10,
     borderRadius: 5,
   },
-  nextButton: {
+  botaoProximo: {
     backgroundColor: '#4CAF50',
     padding: 10,
     borderRadius: 5,
   },
-  buttonText: {
+  textoBotao: {
     color: 'white',
     fontSize: 16,
   },
