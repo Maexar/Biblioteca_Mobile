@@ -1,4 +1,8 @@
 class Multa {
+<<<<<<< HEAD
+=======
+    #id;
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
     #valorMulta;
     #dataPagamento;
 

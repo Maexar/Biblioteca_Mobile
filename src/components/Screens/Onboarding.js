@@ -49,7 +49,11 @@ const OnboardingScreen = ({ navigation, route }) => {
   };
 
   const handleSkip = () => {
+<<<<<<< HEAD
     navigation.replace('Home');
+=======
+    navigation.replace('Home', {userData});
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
   };
 
   const renderItem = ({ item }) => (

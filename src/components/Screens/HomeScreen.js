@@ -2,6 +2,10 @@ import React, {useEffect} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput} from 'react-native';
 import Usuario from '../../../Modelos/Usuario';
 import { supabase } from '../../../services/supabase';
+<<<<<<< HEAD
+=======
+import { Image } from 'react-native';
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
 
 const HomeScreen = ({ navigation, route }) => {
   const [userName, setNomeUsuario] = React.useState('');
@@ -79,8 +83,13 @@ const HomeScreen = ({ navigation, route }) => {
 
             {/* inicio cartao livro*/}
             <View style={styles.cartaoLivro}>
+<<<<<<< HEAD
               <View style={styles.capaLivro}></View>
               <Text style={styles.tituloLivro}>Nome do Livro</Text>
+=======
+              <Image source={require('../../assets/81ibfYk4qmL._SY466_.jpg')} style={styles.capaLivro} />
+              <Text style={styles.tituloLivro}>Harry Potter e a Pedra Filosofal</Text>
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
               <Text style={styles.autorLivro}>Autor</Text>
             </View>
             {/* fim cartao livro*/}

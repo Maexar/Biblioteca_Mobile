@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+<<<<<<< HEAD
+=======
+import { TextInputMask } from 'react-native-masked-text'; // Importe o TextInputMask
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
 import Endereco from '../../../Modelos/Endereco';
 import Usuario from '../../../Modelos/Usuario';
 import { supabase } from '../../../services/supabase';
@@ -21,6 +25,7 @@ const SignUpScreen = ({ navigation }) => {
     return emailRegex.test(email);
   };
 
+<<<<<<< HEAD
 
   function criptografarSenha(senha, chaveSecreta) {
       return CryptoJS.AES.encrypt(senha, chaveSecreta).toString();
@@ -57,6 +62,42 @@ const SignUpScreen = ({ navigation }) => {
       Alert.alert("Erro", "Não foi possível criar a conta. Tente novamente.");
     }
   }
+=======
+  const criptografarSenha = (senha, chaveSecreta) => {
+    return CryptoJS.AES.encrypt(senha, chaveSecreta).toString();
+  };
+
+  const chave = 'chave';
+
+  const adicionarUsuario = async () => {
+    try {
+      const senhaCriptografada = criptografarSenha(senha, chave);
+
+      const dataNascimentoDate = new Date(dataNascimento.split('/').reverse().join('-'));
+
+      const dadosUsuario = {
+        nome: nome,
+        email: email,
+        senha: senhaCriptografada,
+        cpf: cpf,
+        data_nascimento: dataNascimentoDate.toISOString(),
+        data_criacao: new Date().toISOString()
+      };
+
+      const { data: dataUsuario, error: errorUsuario } = await supabase
+        .from('Usuario')
+        .insert([dadosUsuario])
+        .select();
+
+      if (errorUsuario) throw errorUsuario;
+
+      navigation.replace('Onboarding', { userData: dataUsuario });
+    } catch (error) {
+      console.error('Erro ao adicionar usuário:', error);
+      Alert.alert('Erro', 'Não foi possível criar a conta. Tente novamente.');
+    }
+  };
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
 
   const criarConta = async () => {
     try {
@@ -88,8 +129,12 @@ const SignUpScreen = ({ navigation }) => {
         Alert.alert('Erro', 'Por favor, insira a cidade.');
         return;
       }
+<<<<<<< HEAD
       adicionarUsuario()
 
+=======
+      adicionarUsuario();
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
       Alert.alert('Erro', 'Ocorreu um erro ao criar a conta. Por favor, tente novamente.');
@@ -119,11 +164,17 @@ const SignUpScreen = ({ navigation }) => {
             value={nome}
             onChangeText={setNome}
           />
+<<<<<<< HEAD
           <TextInput
+=======
+
+          <TextInputMask
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
             style={styles.input}
             placeholder="CPF"
             value={cpf}
             onChangeText={setCpf}
+<<<<<<< HEAD
           />
 
           <TextInput
@@ -131,6 +182,20 @@ const SignUpScreen = ({ navigation }) => {
             placeholder="Data de Nascimento"
             value={dataNascimento}
             onChangeText={setDataNascimento}
+=======
+            type={'cpf'} 
+          />
+
+          <TextInputMask
+            style={styles.input}
+            placeholder="Data de Nascimento (DD/MM/AAAA)"
+            value={dataNascimento}
+            onChangeText={setDataNascimento}
+            type={'datetime'} 
+            options={{
+              format: 'DD/MM/YYYY' 
+            }}
+>>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
           />
 
           <TextInput
