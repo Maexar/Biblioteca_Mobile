@@ -49,7 +49,7 @@ const OnboardingScreen = ({ navigation, route }) => {
   };
 
   const handleSkip = () => {
-    navigation.replace('Home');
+    navigation.replace('Home', {userData});
   };
 
   const renderItem = ({ item }) => (

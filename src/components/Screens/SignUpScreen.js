@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text'; // Importe o TextInputMask
 import Endereco from '../../../Modelos/Endereco';
 import Usuario from '../../../Modelos/Usuario';
 import { supabase } from '../../../services/supabase';
@@ -21,42 +22,55 @@ const SignUpScreen = ({ navigation }) => {
     return emailRegex.test(email);
   };
 
-
-  function criptografarSenha(senha, chaveSecreta) {
-      return CryptoJS.AES.encrypt(senha, chaveSecreta).toString();
-  }
-  
+  const criptografarSenha = (senha, chaveSecreta) => {
+    return CryptoJS.AES.encrypt(senha, chaveSecreta).toString();
+  };
 
   const chave = 'chave';
 
-  const adicionarUsuario = async() => {
+  const adicionarUsuario = async () => {
     try {
       const senhaCriptografada = criptografarSenha(senha, chave);
-      const userData = {
+
+      const dataNascimentoDate = new Date(dataNascimento.split('/').reverse().join('-'));
+
+      const dadosEndereco = {
+        numero: numero,
+        rua: rua,
+        bairro: bairro,
+        cidade: cidade
+      };
+
+      const { data: dataEndereco, error: errorEndereco } = await supabase
+        .from('enderecos')
+        .insert([dadosEndereco])
+        .select();
+
+      if (errorEndereco) throw errorEndereco;
+      console.log(dataEndereco.id)
+      const dadosUsuario = {
         nome: nome,
         email: email,
-        senha: senhaCriptografada
+        senha: senhaCriptografada,
+        endereco_id: dataEndereco[0].id,
+        cpf: cpf,
+        data_nascimento: dataNascimentoDate.toISOString(),
+        data_criacao: new Date().toISOString()
       };
-      
-      const { data, error } = await supabase.from("Usuario").insert([userData]);
-      if (error) throw error;
-      
-      // buscar os dados do usuario recem criado
-      const { data: novoUsuario, error: erroSelect } = await supabase
-        .from("Usuario")
-        .select("*")
-        .eq("email", email)
-        .single();
-        
-      if (erroSelect) throw erroSelect;
-      
-      // depois navega pro Onboarding passando os dados do usuario
-      navigation.replace('Onboarding', { userData: novoUsuario });
+
+      const { data: dataUsuario, error: errorUsuario } = await supabase
+        .from('Usuario')
+        .insert([dadosUsuario])
+        .select();
+
+      if (errorUsuario) throw errorUsuario;
+
+      navigation.replace('Onboarding', { userData: dataUsuario });
     } catch (error) {
-      console.error("Erro ao adicionar usuário:", error);
-      Alert.alert("Erro", "Não foi possível criar a conta. Tente novamente.");
+      console.error('Erro ao adicionar usuário:', error);
+      Alert.alert('Erro', 'Não foi possível criar a conta. Tente novamente.');
     }
-  }
+  };
 
   const criarConta = async () => {
     try {
@@ -88,8 +102,7 @@ const SignUpScreen = ({ navigation }) => {
         Alert.alert('Erro', 'Por favor, insira a cidade.');
         return;
       }
-      adicionarUsuario()
-
+      adicionarUsuario();
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
       Alert.alert('Erro', 'Ocorreu um erro ao criar a conta. Por favor, tente novamente.');
@@ -119,18 +132,24 @@ const SignUpScreen = ({ navigation }) => {
             value={nome}
             onChangeText={setNome}
           />
-          <TextInput
+
+          <TextInputMask
             style={styles.input}
             placeholder="CPF"
             value={cpf}
             onChangeText={setCpf}
+            type={'cpf'} 
           />
 
-          <TextInput
+          <TextInputMask
             style={styles.input}
-            placeholder="Data de Nascimento"
+            placeholder="Data de Nascimento (DD/MM/AAAA)"
             value={dataNascimento}
             onChangeText={setDataNascimento}
+            type={'datetime'} 
+            options={{
+              format: 'DD/MM/YYYY' 
+            }}
           />
 
           <TextInput
