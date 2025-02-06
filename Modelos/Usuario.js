@@ -1,8 +1,4 @@
 class Usuario {
-<<<<<<< HEAD
-=======
-    #id;
->>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
     #nome;
     #endereco;
     #listaEmprestimos;

@@ -1,8 +1,5 @@
 class Endereco {
-<<<<<<< HEAD
-=======
     #id;
->>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
     #numero;
     #rua;
     #bairro;
@@ -30,7 +27,6 @@ class Endereco {
     get getCidade() {
         return this.#cidade;
     }
-
 }
 
 export default Endereco;

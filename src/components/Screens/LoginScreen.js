@@ -47,7 +47,7 @@ const chave = 'chave';
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Bem-vindo à BiblioMob!</Text>
+      <Text style={styles.titulo}>Bem-vindo à Biblioteca</Text>
 
       <TextInput
         style={styles.input}

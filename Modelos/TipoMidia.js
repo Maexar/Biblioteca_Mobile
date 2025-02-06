@@ -1,26 +1,14 @@
 class TipoMidia {
-<<<<<<< HEAD
     #titulo;
     #dataPublicacao;
     #autores;
     #categoriaLivro;
-=======
-    #id;
-    #titulo;
-    #dataPublicacao;
-    #autores;
-    #categoriaMidia;
->>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
 
     constructor(titulo, dataPublicacao, categoriaLivro) {
         this.#titulo = titulo;
         this.#dataPublicacao = dataPublicacao;
         this.#autores = [];
-<<<<<<< HEAD
         this.#categoriaLivro = categoriaLivro;
-=======
-        this.#categoriaMidia = categoriaLivro;
->>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
     }
 
     get getTitulo() {
@@ -48,18 +36,10 @@ class TipoMidia {
     }
 
     get getCategoriaLivro() {
-<<<<<<< HEAD
         return this.#categoriaLivro;
     }
 
     set setCategoriaLivro(categoriaLivro) {
         this.#categoriaLivro = categoriaLivro;
-=======
-        return this.#categoriaMidia;
-    }
-
-    set setCategoriaLivro(categoriaLivro) {
-        this.#categoriaMidia = categoriaLivro;
->>>>>>> 39eb350 (Adicionando máscara aos inputs e validando entradas)
     }
 }
