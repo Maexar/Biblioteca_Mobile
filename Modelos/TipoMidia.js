@@ -3,6 +3,7 @@ class TipoMidia {
     #dataPublicacao;
     #autores;
     #categoriaLivro;
+    //quantidade em estoque?
 
     constructor(titulo, dataPublicacao, categoriaLivro) {
         this.#titulo = titulo;
