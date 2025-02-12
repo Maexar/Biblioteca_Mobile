@@ -35,7 +35,8 @@ export default function App() {
           />
           <Stack.Screen 
             name="Home" 
-            component={HomeScreen} 
+            component={HomeScreen}
+           
           />
           <Stack.Screen
             name="Buscar"

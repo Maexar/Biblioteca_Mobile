@@ -1,5 +1,6 @@
 
-const GOOGLE_BOOKS_API_KEY = 'AIzaSyCByAzohkCj60_H3Tmk9TmPVYEEJgmQhJI';
+import { GOOGLE_BOOKS_API_KEY } from '@env';
+
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
 
 export const searchBookByISBN = async (isbn) => {
