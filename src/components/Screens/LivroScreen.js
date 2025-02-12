@@ -42,8 +42,8 @@ const LivroScreen = ({ route, navigation }) => {
             <Text style={styles.valorDetalhe}>{livro.paginas}</Text>
           </View>
           <View style={styles.itemDetalhe}>
-            <Text style={styles.rotuloDetalhe}>Ano</Text>
-            <Text style={styles.valorDetalhe}>{livro.anoPublicacao}</Text>
+            <Text style={styles.rotuloDetalhe}>Data de Publicação</Text>
+            <Text style={styles.valorDetalhe}>{livro.dataPublicacao}</Text>
           </View>
         </View>
 
@@ -78,5 +78,97 @@ const LivroScreen = ({ route, navigation }) => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F7FA',
+  },
+  cabecalho: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#2c3e50',
+  },
+  botaoVoltar: {
+    marginRight: 16,
+  },
+  tituloCabecalho: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  containerCapa: {
+    alignItems: 'center',
+    padding: 16,
+  },
+  imagemCapa: {
+    width: 200,
+    height: 300,
+    borderRadius: 8,
+  },
+  containerInformacoes: {
+    padding: 16,
+  },
+  tituloLivro: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  autorLivro: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 16,
+  },
+  containerDetalhes: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  itemDetalhe: {
+    alignItems: 'center',
+  },
+  rotuloDetalhe: {
+    fontSize: 14,
+    color: '#666',
+  },
+  valorDetalhe: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  containerDescricao: {
+    marginBottom: 16,
+  },
+  tituloDescricao: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  textoDescricao: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#333',
+  },
+  containerStatus: {
+    marginBottom: 16,
+  },
+  textoStatus: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  botaoEmprestimo: {
+    backgroundColor: '#2c3e50',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  botaoDesabilitado: {
+    backgroundColor: '#95a5a6',
+  },
+  textoBotaoEmprestimo: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});
 
 export default LivroScreen;

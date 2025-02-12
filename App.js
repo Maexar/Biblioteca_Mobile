@@ -7,6 +7,10 @@ import OnboardingScreen from './src/components/Screens/Onboarding';
 import HomeScreen from './src/components/Screens/HomeScreen'; 
 import LoginScreen from './src/components/Screens/LoginScreen';
 import SignUpScreen from './src/components/Screens/SignUpScreen';
+import BuscarScreen from './src/components/Screens/BuscarScreen';
+import MinhaListaScreen from './src/components/Screens/MinhaListaScreen';
+import PerfilScreen from './src/components/Screens/PerfilScreen';
+import LivroScreen from './src/components/Screens/LivroScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,7 +35,26 @@ export default function App() {
           />
           <Stack.Screen 
             name="Home" 
-            component={HomeScreen} />
+            component={HomeScreen} 
+          />
+          <Stack.Screen
+            name="Buscar"
+            component={BuscarScreen}
+          />
+          {/* <Stack.Screen
+            name="MinhaLista"
+            component={MinhaListaScreen}
+          />
+          <Stack.Screen
+            name="Perfil"
+            component={PerfilScreen}
+          /> */}
+          <Stack.Screen
+            name="Livro"
+            component={LivroScreen}
+            options={{ headerShown: false }}
+          />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

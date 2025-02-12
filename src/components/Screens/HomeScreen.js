@@ -4,11 +4,14 @@ import Usuario from '../../../Modelos/Usuario';
 import { supabase } from '../../../services/supabase';
 import { Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { searchBookByTitle } from '../../../services/APIs/googleBooksApi';
+
 
 
 const HomeScreen = ({ navigation, route }) => {
   const [userName, setNomeUsuario] = React.useState('');
   const userData = route.params?.userData;
+  const [livros, setLivros] = React.useState([]);
 
   useEffect(() => {
     if (userData) {
@@ -41,7 +44,87 @@ const HomeScreen = ({ navigation, route }) => {
     navigation.replace('Login');
   };
 
-  
+  useEffect(() => {
+    carregarLivros();
+  }, []);
+
+  const extrairDataPublicacao = (publishedDate) => {
+    if (!publishedDate) return 'Data não disponível';
+    
+    // Se for apenas o ano (formato "YYYY")
+    if (publishedDate.length === 4) {
+      return `01/01/${publishedDate}`;
+    }
+    
+    // Se for data completa (formato "YYYY-MM-DD")
+    try {
+      const data = new Date(publishedDate);
+      if (isNaN(data.getTime())) {
+        return 'Data não disponível';
+      }
+      return data.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+    } catch (error) {
+      console.error('Erro ao converter data:', error);
+      return 'Data não disponível';
+    }
+  };
+
+  //Para implementações futuras, mudar isso aqui pra trazer direto do Supabase
+  const carregarLivros = async () => {
+    const livros = [
+      { 
+        id: 1,
+        titulo: 'O Senhor dos Anéis: A Sociedade do Anel',
+        autor: 'J.R.R. Tolkien',
+      },
+      { 
+        id: 2,
+        titulo: '1984',
+        autor: 'George Orwell',
+      },
+      { 
+        id: 3,
+        titulo: 'O Pequeno Príncipe',
+        autor: 'Antoine de Saint-Exupéry',
+      },
+    ];
+
+     try {
+    const livrosComCapas = await Promise.all(
+      livros.map(async (livro) => {
+        const dadosGoogle = await searchBookByTitle(livro.titulo);
+        return {
+          ...livro,
+          imagem: dadosGoogle?.thumbnail || 'https://via.placeholder.com/100',
+          descricao: dadosGoogle?.description || 'Descrição não disponível',
+          genero: dadosGoogle?.categories?.[0] || 'Gênero não especificado',
+          paginas: dadosGoogle?.pageCount || 'Número de páginas não disponível',
+          dataPublicacao: extrairDataPublicacao(dadosGoogle?.publishedDate),
+          disponivel: true,
+        };
+      })
+    );
+
+    setLivros(livrosComCapas);
+  } catch (error) {
+    console.error('Erro ao carregar livros:', error);
+    // Mantém o fallback, mas com mensagens mais informativas
+    setLivros(livros.map(livro => ({
+      ...livro,
+      imagem: 'https://via.placeholder.com/100',
+      descricao: 'Não foi possível carregar a descrição',
+      genero: 'Gênero não disponível',
+      paginas: 'Não informado',
+      dataPublicacao: 'Data não disponível',
+      disponivel: true,
+    })));
+  }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -64,6 +147,7 @@ const HomeScreen = ({ navigation, route }) => {
       </View>
 
       
+      
       {/* Conteúdo Principal */}
       <ScrollView style={styles.conteudo}>
         {/* Banner Promocional */}
@@ -75,49 +159,19 @@ const HomeScreen = ({ navigation, route }) => {
           <Text style={styles.textoBanner}>Promoção: Leve 3, Pague 2!</Text>
         </View>
 
-        {/* Categorias Principais */}
-        <View style={styles.secao}>
-          <Text style={styles.tituloSecao}>Categorias</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {['Literatura', 'Ficção', 'Não-Ficção', 'E-books', 'Audiobooks'].map((categoria, indice) => (
-              <TouchableOpacity key={indice} style={styles.botaoCategoria}>
-                <Text style={styles.textoBotaoCategoria}>{categoria}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-
         {/* Livros Populares */}
         <View style={styles.secao}>
           <Text style={styles.tituloSecao}>Populares</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {[
-              { 
-                id: 1,
-                titulo: 'Harry Potter e a Pedra Filosofal',
-                autor: 'J. K. Rowling',
-                imagem: require('../../assets/81ibfYk4qmL._SY466_.jpg') 
-              },
-              { 
-                id: 2,
-                titulo: '1984',
-                autor: 'George Orwell', 
-                imagem: 'https://via.placeholder.com/100' 
-              },
-              { 
-                id: 3, 
-                titulo: 'O Pequeno Príncipe', 
-                autor: 'Antoine de Saint-Exupéry', 
-                imagem: 'https://via.placeholder.com/100' 
-              },
-
-            ].map((livro) => (
-              <TouchableOpacity key={livro.id} style={styles.cartaoLivro}>
+            {livros.map((livro) => (
+              <TouchableOpacity 
+                key={livro.id} 
+                style={styles.cartaoLivro}
+                onPress={() => navigation.navigate('Livro', { livro })}
+              >
                 <Image 
-                    //source={{ uri: livro.imagem }} qnd for usar com link, alterar de volta
-                    source={typeof livro.imagem === 'string' ? { uri: livro.imagem } : livro.imagem}
-                    //esse novo source é pra conseguir passar o caminho da imagem nas pastas
-                    style={styles.imagemLivro} 
+                  source={{ uri: livro.imagem }}
+                  style={styles.imagemLivro} 
                 />
                 <Text style={styles.tituloLivro}>{livro.titulo}</Text>
                 <Text style={styles.autorLivro}>{livro.autor}</Text>

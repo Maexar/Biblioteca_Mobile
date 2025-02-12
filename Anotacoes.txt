@@ -1,0 +1,7 @@
+Coisas a fazer:
+
+- Na buscarScreen, substituir a funcao simuladora por buscas reais no supabase;
+- Criar funcionalidade de livro
+
+- nas funcionalidades dos livros, atualizar para sempre consumirem os dados do supabase
+- fazer a api de livros do google mandar os dados pro banco 
