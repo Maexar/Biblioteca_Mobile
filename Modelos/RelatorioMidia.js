@@ -1,5 +1,9 @@
 class RelatorioMidia{
+<<<<<<< HEAD
     #id;
+=======
+    #idRelatorioMida;
+>>>>>>> 8c0f1d0 (Classes atualizadas.)
     #dataRelatorio;
     #totalMidias;
     #totalLivrosDigitais;

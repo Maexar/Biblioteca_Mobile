@@ -1,15 +1,27 @@
 class TipoMidia {
+<<<<<<< HEAD
     #titulo;
     #dataPublicacao;
     #autores;
     #categoriaLivro;
     //quantidade em estoque?
+=======
+    #idTipoMidia;
+    #titulo;
+    #dataPublicacao;
+    #autores;
+    #categoriaMidia;
+>>>>>>> 8c0f1d0 (Classes atualizadas.)
 
     constructor(titulo, dataPublicacao, categoriaLivro) {
         this.#titulo = titulo;
         this.#dataPublicacao = dataPublicacao;
         this.#autores = [];
+<<<<<<< HEAD
         this.#categoriaLivro = categoriaLivro;
+=======
+        this.#categoriaMidia = categoriaLivro;
+>>>>>>> 8c0f1d0 (Classes atualizadas.)
     }
 
     get getTitulo() {
@@ -37,10 +49,18 @@ class TipoMidia {
     }
 
     get getCategoriaLivro() {
+<<<<<<< HEAD
         return this.#categoriaLivro;
     }
 
     set setCategoriaLivro(categoriaLivro) {
         this.#categoriaLivro = categoriaLivro;
+=======
+        return this.#categoriaMidia;
+    }
+
+    set setCategoriaLivro(categoriaLivro) {
+        this.#categoriaMidia = categoriaLivro;
+>>>>>>> 8c0f1d0 (Classes atualizadas.)
     }
 }

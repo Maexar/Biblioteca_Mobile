@@ -1,0 +1,155 @@
+[33mcommit e1b03a3a201a23b3a0b04f35284a75f829dc0a6a[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Feb 13 17:25:32 2025 -0300
+
+    Garantindo a Proteção da Chave da API
+
+[33mcommit 0a0a7b7f119c6ceb2e64f8de223ed442c293bfb9[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Feb 13 14:37:21 2025 -0300
+
+    Resolvendo não reconhecimento da chave de Api
+
+[33mcommit d9c57b731bc73fcaa4e7f5e9a2314db36bf93828[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Feb 13 13:02:09 2025 -0300
+
+    Remove .env file from git tracking
+
+[33mcommit 1bd5c342a147e9f0d2430fe3eaeda6930a02b702[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Wed Feb 12 20:44:58 2025 -0300
+
+    Encriptando chave de Api com variáveis de ambiente
+
+[33mcommit cee53df992d1b24695acf0316c0e0c17fa083fe7[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Wed Feb 12 17:26:53 2025 -0300
+
+    Criação de novas telas;
+    Implementação da LivroScreen;
+    Adicionada a Google Books Api para lidar com os dados dos livros como capa, descrição e data de publicação
+
+[33mcommit eb9d1438720b732b9857353cd9d6012414b2e252[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Fri Feb 7 16:58:12 2025 -0300
+
+    Atualizando dependências e aprimorando a interface da HomeScreen com novos ícones e layout
+
+[33mcommit eba00f6a857085c0e50062d555b5b88d29b188c1[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Feb 6 14:44:34 2025 -0300
+
+    Ajustando problemas de colisão das branches
+
+[33mcommit d07b57bbacaed7078f6bc06de29e89eae5337f82[m
+Merge: f1017c0 d9b30a3
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Feb 6 14:22:06 2025 -0300
+
+    Merge branch 'main' of https://github.com/Maexar/Biblioteca_Mobile
+
+[33mcommit f1017c08a8ef090d33f51efcc93dfa4f9c53923b[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Wed Feb 5 22:47:34 2025 -0300
+
+    Nova modelagem para a HomeScreen e LivroScreen
+
+[33mcommit d9b30a3f852af02bc7cf738f92583ca45016ad99[m
+Author: Marco Benjamim <francamarco60@gmail.com>
+Date:   Mon Feb 3 11:13:05 2025 -0300
+
+    Cadastrando o endereço do usuário no banco de dados
+
+[33mcommit 0cc95c6f011bbb80d2bca2564ae453dace8c27d1[m
+Author: Marco Benjamim <francamarco60@gmail.com>
+Date:   Thu Jan 30 20:06:54 2025 -0300
+
+    Adicionando máscara aos inputs e validando entradas
+    
+    adicionando máscara para inputs e validando entradas.
+
+[33mcommit 73cfeec90f5b5f7a41af789857bbbb43a29bcc42[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Mon Dec 9 21:35:21 2024 -0300
+
+    Leve modelagem na HomeScreen
+
+[33mcommit 2ee572b883889522b9d4d7d19eb7c0fffd3a157e[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Mon Dec 9 21:04:21 2024 -0300
+
+    Padronizando para o português
+
+[33mcommit 053622621b1ed8d024efed1c98cf8304f8a79d75[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Mon Dec 9 20:34:24 2024 -0300
+
+    Arrumando nome de usuário inexistente na HomeScreen após a criação de conta
+
+[33mcommit 10cceaf3601453b3ff2b66318880f4611ea28958[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Mon Dec 9 20:22:03 2024 -0300
+
+    Modelagem Home page; Mostrar Nome do Usuario na home page
+
+[33mcommit 45913a7aba32ddbdd07e2b3e8ff4433d034c72cd[m
+Author: MarcoAfB <francamarco60@gmail.com>
+Date:   Thu Dec 5 09:56:45 2024 -0300
+
+    Conectando login e registro ao banco de dados
+
+[33mcommit 471613f2417f5113456db4dc7fadf1caf3621391[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Nov 14 20:19:41 2024 -0300
+
+    Correção do Construtor de SignUp; Remoção das criptografias
+
+[33mcommit 928affa30b3aa47da344eb0e1615e2fb2252e095[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Nov 14 16:29:57 2024 -0300
+
+    Corrreção de Erros
+
+[33mcommit 2c5dbdc6f2d5c2322f0666d70d0db3dd271f7e5d[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Thu Nov 14 14:28:54 2024 -0300
+
+    Criptografia de Senha e Hash
+
+[33mcommit 3bcd7eb8c7e392edd99ad344d58fa612fd9edd44[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Wed Oct 30 22:24:57 2024 -0300
+
+    Pagina de Login, Criacao de Conta e sair da conta na Homepage
+
+[33mcommit 983eb6fbd28b692e1cf24e413502d3a9614af398[m
+Merge: a1dc248 76e31f8
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Wed Oct 23 23:13:13 2024 -0300
+
+    Merge branch 'main' of https://github.com/Maexar/Biblioteca_Mobile
+
+[33mcommit a1dc248b4f03caf416c486745eced71684927fb6[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Wed Oct 23 23:12:57 2024 -0300
+
+    Criação das Telas de Onboarding
+
+[33mcommit 76e31f82bffc4a979c555e5e22cfab9eb2a8e426[m
+Author: MarcoAfB <francamarco60@gmail.com>
+Date:   Tue Oct 22 21:58:31 2024 -0300
+
+    Criando as classes gerais
+
+[33mcommit 1a95e13105b38aa924db9a6bb366a9d62ba7f0be[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Mon Oct 21 14:26:31 2024 -0300
+
+    teste
+
+[33mcommit 5ddaf95fab376ad11851ef35bdbcb324db94a877[m
+Author: Marlon Jorge Meireles <marlon.meireles.profissional@gmail.com>
+Date:   Mon Oct 21 10:33:24 2024 -0300
+
+    Created a new Expo app

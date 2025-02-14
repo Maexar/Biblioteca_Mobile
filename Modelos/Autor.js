@@ -1,4 +1,8 @@
 class Autor {
+<<<<<<< HEAD
+=======
+    #idAutor;
+>>>>>>> 8c0f1d0 (Classes atualizadas.)
     #nome;
     #nacionalidade;
     #dataNascimento;
