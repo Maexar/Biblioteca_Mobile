@@ -1,8 +1,5 @@
 class Multa {
-<<<<<<< HEAD
-=======
     #idMulta;
->>>>>>> 8c0f1d0 (Classes atualizadas.)
     #valorMulta;
     #dataPagamento;
 

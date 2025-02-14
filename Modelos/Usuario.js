@@ -1,8 +1,5 @@
 class Usuario {
-<<<<<<< HEAD
-=======
     #idUsuario;
->>>>>>> 8c0f1d0 (Classes atualizadas.)
     #nome;
     #endereco;
     #listaEmprestimos;
@@ -10,10 +7,6 @@ class Usuario {
     #dataNascimento;
     #email;
     #senha;
-<<<<<<< HEAD
-    //nivel de acesso?
-=======
->>>>>>> 8c0f1d0 (Classes atualizadas.)
 
     constructor(nome, endereco, cpf, dataNascimento, email, senha) {
         this.#nome = nome;

@@ -1,9 +1,5 @@
 class Endereco {
-<<<<<<< HEAD
-    #id;
-=======
     #idEndereco;
->>>>>>> 8c0f1d0 (Classes atualizadas.)
     #numero;
     #rua;
     #bairro;

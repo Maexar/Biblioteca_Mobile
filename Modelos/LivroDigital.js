@@ -1,10 +1,4 @@
 class LivroDigital extends TipoMidia {
-<<<<<<< HEAD
-    #qtdPaginas;
-    constructor(titulo, dataPublicacao, categoriaLivro) {
-        super(titulo, qtdPaginas, dataPublicacao, categoriaLivro);
-        this.#qtdPaginas = qtdPaginas;
-=======
     #idLivroDigital;
     #qtdPaginas;
     #tamanhoMegaBytes
@@ -20,6 +14,5 @@ class LivroDigital extends TipoMidia {
 
     get getTamanhoMegaBytes() {
         return this.#tamanhoMegaBytes;
->>>>>>> 8c0f1d0 (Classes atualizadas.)
     }
 }
