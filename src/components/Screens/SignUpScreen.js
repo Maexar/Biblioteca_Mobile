@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text'; // Importe o TextInputMask
 import Endereco from '../../../Modelos/Endereco';
 import Usuario from '../../../Modelos/Usuario';
 import { supabase } from '../../../services/supabase';
 import CryptoJS from 'react-native-crypto-js';
+import { Picker } from '@react-native-picker/picker';
 
-const SignUpScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation, route }) => {
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
+  const userData = route.params?.userData;
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdminNovoUsuario, setisAdminNovoUsuario] = useState(false);
+
+  useEffect(() => {
+    if (userData) {
+      setIsAdmin(userData.admin);
+    }
+  }, [userData]);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,7 +66,8 @@ const SignUpScreen = ({ navigation }) => {
         endereco_id: dataEndereco[0].id,
         cpf: cpf,
         data_nascimento: dataNascimentoDate.toISOString(),
-        data_criacao: new Date().toISOString()
+        data_criacao: new Date().toISOString(),
+        admin: isAdminNovoUsuario
       };
 
       const { data: dataUsuario, error: errorUsuario } = await supabase
@@ -86,6 +98,10 @@ const SignUpScreen = ({ navigation }) => {
         Alert.alert('Erro', 'A senha deve ter pelo menos 6 caracteres.');
         return;
       }
+      if(senha != confirmarSenha){
+        Alert.alert('Erro', 'Senha de confirmação não corresponde');
+        return;
+      } 
       if (!rua) {
         Alert.alert('Erro', 'Por favor, insira a rua.');
         return;
@@ -110,7 +126,11 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   const handleCancel = () => {
-    navigation.navigate('Login');
+    if(isAdmin){
+      navigation.navigate('Home', {userData: userData});
+    }else{
+      navigation.navigate('Login');
+    }
   };
 
   return (
@@ -167,6 +187,27 @@ const SignUpScreen = ({ navigation }) => {
             onChangeText={setSenha}
             secureTextEntry
           />
+          <TextInput
+            style={styles.input}
+            placeholder="Confirmar Senha"
+            value={confirmarSenha}
+            onChangeText={setConfirmarSenha}
+            secureTextEntry
+          />
+
+          {isAdmin && (
+            <View style={styles.input}>
+              <Text style={styles.label}>Administrador</Text>
+              <Picker
+                selectedValue={isAdminNovoUsuario}
+                onValueChange={(itemValue) => setisAdminNovoUsuario(itemValue)}
+                style={styles.picker}
+              >
+                <Picker.Item label="Não" value="false" />
+                <Picker.Item label="Sim" value="true" />
+              </Picker>
+            </View>
+          )}
 
           <Text style={styles.subtitulo}>Endereço</Text>
           <TextInput

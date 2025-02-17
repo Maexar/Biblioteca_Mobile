@@ -11,11 +11,14 @@ import { searchBookByTitle } from '../../../services/APIs/googleBooksApi';
 const HomeScreen = ({ navigation, route }) => {
   const [userName, setNomeUsuario] = React.useState('');
   const userData = route.params?.userData;
+  const [isAdmin, setIsAdmin] = React.useState(false);
+  const [showAdminOptions, setShowAdminOptions] = React.useState(false);
   const [livros, setLivros] = React.useState([]);
 
   useEffect(() => {
     if (userData) {
       setNomeUsuario(userData.nome);
+      setIsAdmin(userData.admin);
     } else {
       buscaDadosUsuario();
     }
@@ -27,12 +30,16 @@ const HomeScreen = ({ navigation, route }) => {
       if (user) {
         const { data, error } = await supabase
           .from('Usuario')
-          .select('nome')
+          .select('nome, admin')
           .eq('email', user.email)
           .single();
-      
+        console.log("ADM", data.admin)
         if (error) throw error;
-        if (data) setNomeUsuario(data.nome);
+        if (data) {
+          setNomeUsuario(data.nome);
+          console.log("ADM", data.admin)
+          setIsAdmin(data.admin || false);
+        }
       }
     } catch (error) {
       console.log('Erro ao buscar dados do usuário:', error);
@@ -123,16 +130,64 @@ const HomeScreen = ({ navigation, route }) => {
       disponivel: true,
     })));
   }
+
   };
+  const AdminMenu = ({ userData, navigation }) => (
+    <View style={styles.adminMenu}>
+      <TouchableOpacity 
+        style={styles.menuItem}
+        onPress={() => navigation.replace('SignUp', {userData})}>
+        <Text>Cadastrar Usuário</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity 
+        style={styles.menuItem}
+        onPress={() => navigation.navigate('CadastroMidia')}>
+        <Text>Cadastrar Mídia</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity 
+        style={styles.menuItem}
+        onPress={() => navigation.navigate('RelatorioMidia')}>
+        <Text>Relatório de Mídia</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity 
+        style={styles.menuItem}
+        onPress={() => navigation.navigate('RelatorioEmprestimo')}>
+        <Text>Relatório de Empréstimo</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity 
+        style={styles.menuItem}
+        onPress={() => navigation.navigate('EmprestarLivro')}>
+        <Text>Emprestar Livro</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
+
     <View style={styles.container}>
+
       <View style={styles.header}>
         <Text style={styles.textoUsuario}>Bem-vindo, {userName}</Text>
+        <View style={styles.headerButtons}>
+          {isAdmin && (
+            <TouchableOpacity 
+              onPress={() => setShowAdminOptions(!showAdminOptions)}
+              style={styles.adminButton}>
+              <Text style={styles.textoSair}>ADM</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+        
         <TouchableOpacity onPress={handleLogout} style={styles.iconeNotificacao}>
         <Ionicons name="log-out-outline" size={24} color="#fff" />
         </TouchableOpacity>
+        
       </View>
+      {showAdminOptions && isAdmin && <AdminMenu userData={userData} navigation={navigation} />}
 
       {/* Barra de Pesquisa */}
       <View style={styles.containerPesquisa}>
@@ -145,8 +200,6 @@ const HomeScreen = ({ navigation, route }) => {
           <Ionicons name="search-outline" size={24} color="#34495e" />
         </TouchableOpacity>
       </View>
-
-      
       
       {/* Conteúdo Principal */}
       <ScrollView style={styles.conteudo}>
@@ -208,6 +261,29 @@ const HomeScreen = ({ navigation, route }) => {
 };// const HomeScreen
 
 const styles = StyleSheet.create({
+
+  adminButton: {
+    padding: 8,
+    backgroundColor: '#242424',
+    borderRadius: 5,
+  },
+  adminMenu: {
+    position: 'absolute',
+    right: 20,
+    top: 60,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 10,
+    elevation: 5,
+    zIndex: 1000,
+  },
+
+  menuItem: {
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+
   container: {
     flex: 1,
     backgroundColor: '#F5F7FA',

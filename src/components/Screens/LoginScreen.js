@@ -16,30 +16,35 @@ const LoginScreen = ({ navigation }) => {
 
 const chave = 'chave';
 
-  async function lidarLogin() {
-    if (!email) {
-      Alert.alert('Erro', 'Por favor, insira o email.');
-      return;
-    }
-    if (!senha) {
-      Alert.alert('Erro', 'Por favor, insira a senha.');
-      return;
-    }
-    if(senha && email){
-      const { data, error, status } = await supabase
-        .from('Usuario')
-        .select('*')
-        .eq('email', email)
-        .single()
-        const senhaBanco = descriptografarSenha(data.senha, chave)
-        if(senhaBanco == senha){
-          navigation.replace('Home', {userData: data}); 
-        }
-        else{
-          Alert.alert('Erro', 'Conta não existe');
-        }
-    }
-  };
+async function lidarLogin() {
+  if (!email) {
+    Alert.alert('Erro', 'Por favor, insira o email.');
+    return;
+  }
+  if (!senha) {
+    Alert.alert('Erro', 'Por favor, insira a senha.');
+    return;
+  }
+  if(senha && email){
+    const { data, error, status } = await supabase
+      .from('Usuario')
+      .select('*')
+      .eq('email', email)
+      .single()
+      if (error !== null) {
+        Alert.alert('Erro', 'Email não existe');
+      }
+      const senhaBanco = descriptografarSenha(data.senha, chave)
+      if(senhaBanco == senha){
+        navigation.replace('Home', {userData: data}); 
+      }
+      else{
+        Alert.alert('Erro', 'Conta não existe');
+      }
+
+  
+  }
+};
 
   const lidarRegistro = () => {
     navigation.replace('SignUp'); 
